@@ -4,7 +4,8 @@ import {Card, CardActions, CardHeader, CardText, CardTitle} from 'material-ui/Ca
 import Paper from 'material-ui/Paper';
 import GridList from 'material-ui/GridList';
 import Loader from './Loader'
-
+import Avatar from 'material-ui/Avatar';
+import Chip from 'material-ui/Chip';
 
 const style = {
     height: 'auto',
@@ -19,12 +20,12 @@ const style = {
 
 class Details extends React.Component {
 
-
     constructor(props) {
         super(props);
 
         this.state = {
             show: '',
+            myCast: '',
             movieLoaded: false
         };
 
@@ -38,6 +39,13 @@ class Details extends React.Component {
             this.setState({movieLoaded:true})
         });
 
+        fetch('https://api.themoviedb.org/3/movie/' + this.props.params.id + "/credits?api_key=" + Key )
+            .then((response) => {
+                response.json().then((json) => {
+                    this.setState({ myCast: json });
+                });
+            });
+
 
     }
 
@@ -45,6 +53,7 @@ class Details extends React.Component {
 
         if(this.state.movieLoaded){
         return(
+
                 <div>
                     <div className="App-header" style={{backgroundImage: "url('https://image.tmdb.org/t/p/w1440_and_h320_bestv2" + this.state.show.backdrop_path + "')"}}>
                         <h1 style={{fontFamily: 'Yanone Kaffeesatz',fontSize: 100, textShadow: "2px 2px 10px rgba(0, 0, 0, 1)"}}>{this.state.show.title}</h1>
@@ -68,6 +77,12 @@ class Details extends React.Component {
                                 </Card>
 
 
+                                <Card style={{marginBottom: 8, display:'flex',flexWrap:'wrap'}}>
+                                    <CardTitle title="Cast" />
+                                    <CardText>
+                                        <Chip style={{margin: 4}}>{this.state.myCast.cast[0].name} </Chip>
+                                    </CardText>
+                                </Card>
                             </Paper>
                         </GridList>
 

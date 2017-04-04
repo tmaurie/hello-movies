@@ -3,7 +3,7 @@
 # dependencies
 node_modules
 .idea
-Key.js
+src/app/components/Key.js
 # testing
 coverage
 

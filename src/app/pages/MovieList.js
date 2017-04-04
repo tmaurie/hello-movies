@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Key from './Key';
+import Key from '../components/Key';
 import SearchBox from '../components/SearchBox';
 import ResultList from '../components/ResultList';
 import RaisedButton from 'material-ui/RaisedButton'

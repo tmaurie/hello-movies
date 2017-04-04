@@ -4,21 +4,17 @@ import App from './app/pages/App';
 import './app/pages/index.css';
 import Details from  './app/pages/Details'
 import MovieList from './app/pages/MovieList'
-import { Router, Route, browserHistory, Redirect, IndexRoute } from 'react-router'
-
-
+import {Router, Route, browserHistory, Redirect, IndexRoute} from 'react-router'
 
 
 ReactDOM.render((
-        <Router history={browserHistory}>
-            <Route path="/" component={App} >
-                <IndexRoute component={MovieList} />
-                <Route path="/m/:id" component={Details}/>
-            </Route>
+    <Router history={browserHistory}>
+        <Route path="/" component={App}>
+            <IndexRoute component={MovieList}/>
+            <Route path="/m/:id" component={Details}/>
+        </Route>
+    </Router>
 
-
-        </Router>
-
-    ), document.getElementById('root'));
+), document.getElementById('root'));
 
 

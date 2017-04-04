@@ -40,7 +40,8 @@ class AppNavDrawer extends Component {
 
         <div className="test">
         <AppBar
-            style={{backgroundColor:'#3f51b5', boxShadow:"0px 1px 6px" }}
+            title="Hello-Movies"
+            style={{backgroundColor:'#3f51b5', boxShadow:"0px 1px 6px", textAlign:'left' }}
             iconElementLeft={<IconButton style={{iconHoverColor:'black'}} onTouchTap={this.handleToggle}><NavigationMenu /></IconButton>}
             iconElementRight={
 

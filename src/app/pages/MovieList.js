@@ -4,7 +4,11 @@ import SearchBox from './SearchBox';
 import ResultList from './ResultList';
 import RaisedButton from 'material-ui/RaisedButton'
 import Loader from './Loader'
+import Trending from 'material-ui/svg-icons/action/trending-up'
+import Stars from 'material-ui/svg-icons/action/stars'
+import FontIcon from 'material-ui/FontIcon';
 import {router, browserHistory, Link} from 'react-router'
+
 
 let image_array = ["https://image.tmdb.org/t/p/w1440_and_h320_bestv2/49L0c5utmm0A4BkeDafM9BOhyBT.jpg","https://image.tmdb.org/t/p/w1440_and_h320_bestv2/vA5xMglyZv7yzDTj1qUTU4OvelV.jpg","https://image.tmdb.org/t/p/w1440_and_h320_bestv2/oRQ7INsPDVon7U2jphXDr7LSP3H.jpg","https://image.tmdb.org/t/p/w1440_and_h320_bestv2/fSwYa5q2xRkBoOOjueLpkLf3N1m.jpg","https://image.tmdb.org/t/p/w1440_and_h320_bestv2/b09vRh5oOda2REMlv9yiMxULRIt.jpg", "https://image.tmdb.org/t/p/w1440_and_h320_bestv2/4RvHJHSuQUKRzUx8h6a8VAxvbIE.jpg", "https://image.tmdb.org/t/p/w1440_and_h320_bestv2/d8duYyyC9J5T825Hg7grmaabfxQ.jpg", "https://image.tmdb.org/t/p/w1440_and_h320_bestv2/z5A5W3WYJc3UVEWljSGwdjDgQ0j.jpg"];
 let test = Math.floor(Math.random() * image_array.length);
@@ -61,11 +65,6 @@ class MovieList extends Component {
                 });
             });
 
-
-
-
-
-
     }
 
     gotorandom() {
@@ -109,9 +108,30 @@ class MovieList extends Component {
             <div className="App-header" style={{backgroundImage: `url('${image}')`}}>
                 <SearchBox onChange={this.searchResults.bind(this)} />
                 <br/>
-                <RaisedButton backgroundColor={"#3f51b5"} labelColor={"#fff"} onTouchTap={() => this.getTopRated()} label="Top Rated" style={{margin : 12}}  />
-                <RaisedButton backgroundColor={"#3f51b5"} labelColor={"#fff"} onTouchTap={() => this.getRandom()} label="Get Me Random !" style={{margin : 12}}  />
-                <RaisedButton  backgroundColor={"#3f51b5"} labelColor={"#fff"} onTouchTap={() => this.getPopular()} label="Popular" style={{margin : 12}}  />
+                <RaisedButton
+                    backgroundColor={"#3f51b5"}
+                    labelColor={"#fff"}
+                    onTouchTap={() => this.getTopRated()}
+                    label="Top Rated" style={{margin : 12}}
+                    labelPosition="after"
+                    icon={<Stars />}
+                />
+                <RaisedButton
+                    backgroundColor={"#3f51b5"}
+                    labelColor={"#fff"}
+                    onTouchTap={() => this.getRandom()}
+                    label="Get Me Random !"
+                    style={{margin : 12}}
+                />
+                <RaisedButton
+                    backgroundColor={"#3f51b5"}
+                    labelColor={"#fff"}
+                    onTouchTap={() => this.getPopular()}
+                    label="Popular"
+                    labelPosition="before"
+                    icon={<Trending/>}
+                    style={{margin : 12}}
+                />
 
 
                 <div className="test">

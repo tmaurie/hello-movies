@@ -1,10 +1,9 @@
 import React from 'react'
 import Key from './Key'
-import {Card, CardActions, CardHeader, CardText, CardTitle} from 'material-ui/Card';
+import {Card, CardText, CardTitle} from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
 import GridList from 'material-ui/GridList';
-import Loader from './Loader'
-import Avatar from 'material-ui/Avatar';
+import Loader from '../components/Loader'
 import Chip from 'material-ui/Chip';
 
 const style = {
@@ -67,7 +66,7 @@ class Details extends React.Component {
                             cellHeight={'auto'}
                             style={{textAlign:'left'}}
                         >
-                            <img style={{boxShadow: '0px 0px 17px -1px rgba(0,0,0,0.75)'}} src={"https://image.tmdb.org/t/p/w500" + this.state.show.poster_path}/>
+                            <img alt="poster" style={{boxShadow: '0px 0px 17px -1px rgba(0,0,0,0.75)'}} src={"https://image.tmdb.org/t/p/w500" + this.state.show.poster_path}/>
                             <Paper style={{padding: 0, backgroundColor:'#f2f2f2'}} zDepth={0}>
                                 <Card style={{marginBottom: 8}}>
                                     <CardTitle title="Overview" />

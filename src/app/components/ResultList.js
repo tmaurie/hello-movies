@@ -7,8 +7,7 @@ import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
 import IconButton from 'material-ui/IconButton';
 import fillerImage from '../../static/404.png'
 import Paper from 'material-ui/Paper';
-import Key from './Key';
-import {router, browserHistory, Link} from 'react-router'
+import { browserHistory } from 'react-router'
 
 
 import {Card, CardActions, CardMedia, CardTitle, CardText} from 'material-ui/Card';
@@ -54,8 +53,8 @@ class ResultList extends React.Component {
             let poster = "https://image.tmdb.org/t/p/w300_and_h450_bestv2/" + movie.poster_path;
             let media = movie.media_type;
             let itemTitle;
-            if (movie.poster_path == null) { poster = fillerImage }
-            if (media == 'tv'){ itemTitle = movie.name;}
+            if (movie.poster_path === null) { poster = fillerImage }
+            if (media === 'tv'){ itemTitle = movie.name;}
             else { itemTitle = movie.title;}
 
             return <Card>

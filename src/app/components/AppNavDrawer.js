@@ -4,11 +4,6 @@
 import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
-import SearchBox from './SearchBox';
-
-
-//import Avatar from 'material-ui/Avatar'
-import AutoComplete from 'material-ui/AutoComplete';
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
@@ -18,10 +13,7 @@ import ContentPaste from 'material-ui/svg-icons/content/content-paste';
 import Theaters from 'material-ui/svg-icons/action/theaters';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
-import RaisedButton from 'material-ui/RaisedButton';
 import SignIn from  './SignIn'
-
-
 
 class AppNavDrawer extends Component {
 

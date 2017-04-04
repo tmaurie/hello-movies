@@ -4,7 +4,7 @@ import App from './app/pages/App';
 import './app/pages/index.css';
 import Details from  './app/pages/Details'
 import MovieList from './app/pages/MovieList'
-import {Router, Route, browserHistory, Redirect, IndexRoute} from 'react-router'
+import {Router, Route, browserHistory, IndexRoute} from 'react-router'
 
 
 ReactDOM.render((
@@ -14,7 +14,4 @@ ReactDOM.render((
             <Route path="/m/:id" component={Details}/>
         </Route>
     </Router>
-
 ), document.getElementById('root'));
-
-

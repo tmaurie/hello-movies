@@ -14,22 +14,39 @@ import Theaters from 'material-ui/svg-icons/action/theaters';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import SignIn from  './SignIn'
+import {browserHistory} from 'react-router'
+import Key from './Key'
 
 class AppNavDrawer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {open: false};
+        this.state = {open: false, genres : []};
+
+
+
+        fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=' + Key)
+            .then((response) => {
+                response.json().then((json) => {
+                    this.setState({genres: json.genres});
+                });
+            });
+
 
     }
 
     handleToggle = () => this.setState({open: !this.state.open});
 
 
+    goToGenres = (id) => {
+        browserHistory.push(`/g/${id}`);
+
+    };
 
     render() {
-        return(
 
+        const g = this.state.genres;
+        return(
         <div className="test">
         <AppBar
             title="Hello-Movies"
@@ -40,7 +57,6 @@ class AppNavDrawer extends Component {
                 <SignIn />
 
             }>
-
 
         </AppBar>
 
@@ -61,20 +77,10 @@ class AppNavDrawer extends Component {
                     leftIcon={<Theaters />}
                     primaryTogglesNestedList={true}
                     nestedItems={[
-                        <ListItem
-                            primaryText="Genre1"
-                            key="Genre1"
-                            value="/Page"
-                        />,
-                    <ListItem
-                        primaryText="Genre2"
-                        key="Genre2"
 
-                    />,
-                        <ListItem
-                            primaryText="Genre2"
-                            key="Genre3"
-                        />,
+                        g.map((g, i) => {
+                            return <ListItem key={i} primaryText={g.name} onTouchTap={() => {this.goToGenres(g.id)}}/>
+                        })
 
                 ]}
                 />
@@ -87,12 +93,15 @@ class AppNavDrawer extends Component {
 
                 />
                 <ListItem primaryText='Seen' leftIcon={<RemoveRedEye />} />
+
+
                 </List>
         </Drawer>
 </div>
 
         );
     }
+
 }
 
 export default AppNavDrawer;

@@ -40,6 +40,7 @@ class AppNavDrawer extends Component {
 
     goToGenres = (id) => {
         browserHistory.push(`/g/${id}`);
+        this.setState({open : false});
 
     };
 

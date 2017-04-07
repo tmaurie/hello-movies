@@ -1,4 +1,3 @@
-
 import React from 'react';
 import GridList from 'material-ui/GridList';
 import Add from 'material-ui/svg-icons/content/add';

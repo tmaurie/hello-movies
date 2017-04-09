@@ -11,6 +11,7 @@ import LiveTV from 'material-ui/svg-icons/notification/live-tv';
 import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
 import ContentPaste from 'material-ui/svg-icons/content/content-paste';
 import Theaters from 'material-ui/svg-icons/action/theaters';
+import Home from 'material-ui/svg-icons/action/home';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import SignIn from  './SignIn'
@@ -40,8 +41,13 @@ class AppNavDrawer extends Component {
 
     goToGenres = (id) => {
         browserHistory.push(`/g/${id}`);
+        window.location.reload();
         this.setState({open : false});
+    };
 
+    goHome = () => {
+      browserHistory.push('/');
+      this.setState({open : false});
     };
 
     render() {
@@ -73,6 +79,11 @@ class AppNavDrawer extends Component {
         />
                 <List style={{textAlign:'left'}}>
                 <Subheader>Menu</Subheader>
+                    <ListItem
+                    primaryText='Home'
+                    leftIcon={<Home/>}
+                    onTouchTap={this.goHome}
+                    />
                     <ListItem
                     primaryText='Movies'
                     leftIcon={<Theaters />}

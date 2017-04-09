@@ -8,7 +8,7 @@ import Trending from 'material-ui/svg-icons/action/trending-up'
 import Stars from 'material-ui/svg-icons/action/stars'
 import Help from 'material-ui/svg-icons/action/help';
 import {browserHistory} from 'react-router'
-
+import Pagination from 'material-ui-pagination'
 
 let image_array = ["https://image.tmdb.org/t/p/w1440_and_h320_bestv2/49L0c5utmm0A4BkeDafM9BOhyBT.jpg", "https://image.tmdb.org/t/p/w1440_and_h320_bestv2/vA5xMglyZv7yzDTj1qUTU4OvelV.jpg", "https://image.tmdb.org/t/p/w1440_and_h320_bestv2/oRQ7INsPDVon7U2jphXDr7LSP3H.jpg", "https://image.tmdb.org/t/p/w1440_and_h320_bestv2/fSwYa5q2xRkBoOOjueLpkLf3N1m.jpg", "https://image.tmdb.org/t/p/w1440_and_h320_bestv2/b09vRh5oOda2REMlv9yiMxULRIt.jpg", "https://image.tmdb.org/t/p/w1440_and_h320_bestv2/4RvHJHSuQUKRzUx8h6a8VAxvbIE.jpg", "https://image.tmdb.org/t/p/w1440_and_h320_bestv2/d8duYyyC9J5T825Hg7grmaabfxQ.jpg", "https://image.tmdb.org/t/p/w1440_and_h320_bestv2/z5A5W3WYJc3UVEWljSGwdjDgQ0j.jpg"];
 let test = Math.floor(Math.random() * image_array.length);
@@ -24,7 +24,11 @@ class MovieList extends Component {
             //initialize (it is initialized to an empty array because things that depend on this.state.myList expect it to be an array)
             myList: [],
             myRandomMovie: '',
-            ListLoaded: false
+            ListLoaded: false,
+            total: 10,
+            display: 10,
+            number: 1,
+            category : 'popular',
         }
 
     }
@@ -35,9 +39,11 @@ class MovieList extends Component {
             .then((response) => {
                 response.json().then((json) => {
                     this.setState({myList: json.results})
+                }).then(()=>{
+                    this.setState({category: 'top_rated',number:1})
                 });
             });
-    }
+    };
 
     getPopular() {
         var querypopular = 'https://api.themoviedb.org/3/movie/popular?';
@@ -48,6 +54,9 @@ class MovieList extends Component {
                 });
             }).then(() => {
             this.setState({ListLoaded: true})
+                .then(()=>{
+                this.setState({category: 'popular',number:1})
+            });
         });
     }
 
@@ -65,14 +74,25 @@ class MovieList extends Component {
                 });
             });
 
-    }
+    };
 
     gotorandom() {
         let randomItem = Math.floor(Math.random() * 19);
         let randomId = this.state.myRandomMovie.results[randomItem].id;
 
         browserHistory.push(`/m/${randomId}`);
-    }
+    };
+
+    pageChange = (number) =>{
+
+        this.setState({ number });
+        fetch('https://api.themoviedb.org/3/movie/'+this.state.category+'?&api_key=' + Key + '&page=' + number )
+            .then((response) => {
+                response.json().then((json) => {
+                    this.setState({myList: json.results})
+                });
+            })
+    };
 
 
     //need to add query
@@ -100,8 +120,7 @@ class MovieList extends Component {
         }
         if (this.state.myList === empty) {
         }
-
-    }
+    };
 
     render() {
         if (this.state.ListLoaded) {
@@ -140,8 +159,14 @@ class MovieList extends Component {
 
 
                         <ResultList className="result-list" list={this.state.myList}/>
-                    </div>
 
+                        <Pagination
+                            total={ this.state.total }
+                            current={ this.state.number }
+                            display={ this.state.display }
+                            onChange={ this.pageChange}
+                        />
+                    </div>
                 </div>
             )
         }

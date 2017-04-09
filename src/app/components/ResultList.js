@@ -80,8 +80,6 @@ class ResultList extends React.Component {
         return (
             <Paper style={style} zDepth={1} rounded={false}>
 
-
-
             <GridList
                 cols={4}
                 padding={10}

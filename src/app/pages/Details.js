@@ -31,7 +31,6 @@ class Details extends React.Component {
             movieLoaded: false
         };
 
-
         fetch('http://api.themoviedb.org/3/movie/' + this.props.params.id + "?api_key=" + Key)
             .then((response) => {
                 response.json().then((json) => {
@@ -49,6 +48,24 @@ class Details extends React.Component {
                     this.setState({myCast: json.cast});
                 });
             });
+
+        /*fetch({
+            method: 'GET',
+            headers:
+                {
+                    "Authorization": "",
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Origin': '',
+                    'Host': 'api.t411.ai'
+                },
+            uri : "https://api.t411.ai",
+            mode: 'cors',
+        }).then((response) => {
+            response.json().then((json) => {
+                this.setState({myTorrent: json.cast});
+            });
+        });*/
 
 
     }

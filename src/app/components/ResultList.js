@@ -23,7 +23,6 @@ const style = {
 
 };
 
-
 class ResultList extends React.Component {
     constructor(props) {
         super(props);
@@ -31,10 +30,6 @@ class ResultList extends React.Component {
             open: false,
         }
     }
-
-
-
-
 
     _handleClick = (id) => {
         browserHistory.push(`/m/${id}`);
@@ -91,7 +86,6 @@ class ResultList extends React.Component {
             </GridList>
             </Paper>
         )
-
     }
 }
 

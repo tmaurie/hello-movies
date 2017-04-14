@@ -70,13 +70,13 @@ class MovieList extends Component {
             .then((response) => {
                 response.json().then((json) => {
                     this.setState({myRandomMovie: json});
-                    this.gotorandom();
+                    this.goToRandom();
                 });
             });
 
     };
 
-    gotorandom() {
+    goToRandom() {
         let randomItem = Math.floor(Math.random() * 19);
         let randomId = this.state.myRandomMovie.results[randomItem].id;
 
@@ -154,22 +154,19 @@ class MovieList extends Component {
                         style={{margin: 12}}
                     />
 
-
                     <div className="test">
-
-
-                        <ResultList className="result-list" list={this.state.myList}/>
-
+                        <ResultList className="result-list" list={ this.state.myList }/>
                         <Pagination
                             total={ this.state.total }
                             current={ this.state.number }
                             display={ this.state.display }
-                            onChange={ this.pageChange}
+                            onChange={ this.pageChange }
                         />
                     </div>
                 </div>
             )
         }
+
         else {
             return (
                 <Loader/>
